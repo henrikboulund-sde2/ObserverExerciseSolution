@@ -1,18 +1,17 @@
 public class Main {
     public static void main(String[] args)
     {
-        Channel sportsChannel = new Channel("Sports");
-        Channel newsChannel = new Channel("News");
+        Auctioneer auctioneer = new Auctioneer("Antique Watch");
+        Bidder bidder1 = new Bidder("John");
+        Bidder bidder2 = new Bidder("Alice");
 
-        User user1 = new User("Alice");
-        User user2 = new User("Bob");
+        auctioneer.registerObserver(bidder1);
+        auctioneer.registerObserver(bidder2);
 
-        sportsChannel.registerObserver(user1);
-        sportsChannel.registerObserver(user2);
-
-        newsChannel.registerObserver(user2);
-
-        sportsChannel.postMessage("New match update: Team A scored a goal!");
-        newsChannel.postMessage("Breaking news: Earthquake reported in Region X");
+        auctioneer.startAuction();
+        auctioneer.placeBid(50.0f); // John places bid
+        auctioneer.placeBid(60.0f); // Alice places bid
+        auctioneer.placeBid(55.0f); // John places another bid
+        auctioneer.endAuction();
     }
 }
